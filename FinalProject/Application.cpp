@@ -20,8 +20,8 @@ void Application::Init()
 	BuildHouseRoof();
 	BuildPoolSurface();
 	BuildPinggiranPool_1();
-	/*BuildTree();
-	BuildTreeLeaf();*/
+	BuildTree();
+	BuildTreeLeaf();
 	InitCamera();
 }
 
@@ -69,10 +69,11 @@ void Application::Render()
 	DrawColoredPlane();
 	DrawHouse();
 	DrawHouseRoof();
+
 	DrawPoolSurface();
 	DrawPinggiranPool_1();
-	/*DrawTree();
-	DrawTreeLeaf();*/
+	DrawTree();
+	DrawTreeLeaf();
 
 	glDisable(GL_DEPTH_TEST);
 }
@@ -678,6 +679,197 @@ void Application::BuildColoredPlane()
 	glBindVertexArray(0); // Unbind VAO
 }
 
+void Application::BuildTree() {
+	// load image into texture memory
+	// ------------------------------
+	// Load and create a texture 
+	glGenTextures(1, &texture5);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	int width, height;
+	unsigned char* image = SOIL_load_image("Tree.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 1);
+
+	// set up vertex data (and buffer(s)) and configure vertex attributes
+	// ------------------------------------------------------------------
+	float vertices[] = {
+		// format position, tex coords
+		// front
+		-0.5, -0.5, 0.5, 0, 0,  // 0
+		0.5, -0.5, 0.5, 1, 0,   // 1
+		0.5,  0.5, 0.5, 1, 1,   // 2
+		-0.5,  0.5, 0.5, 0, 1,  // 3
+
+		// right
+		0.5,  0.5,  0.5, 0, 0,  // 4
+		0.5,  0.5, -0.5, 1, 0,  // 5
+		0.5, -0.5, -0.5, 1, 1,  // 6
+		0.5, -0.5,  0.5, 0, 1,  // 7
+
+		// back
+		-0.5, -0.5, -0.5, 0, 0, // 8 
+		0.5,  -0.5, -0.5, 1, 0, // 9
+		0.5,   0.5, -0.5, 1, 1, // 10
+		-0.5,  0.5, -0.5, 0, 1, // 11
+
+		// left
+		-0.5, -0.5, -0.5, 0, 0, // 12
+		-0.5, -0.5,  0.5, 1, 0, // 13
+		-0.5,  0.5,  0.5, 1, 1, // 14
+		-0.5,  0.5, -0.5, 0, 1, // 15
+
+		// upper
+		0.5, 0.5,  0.5, 0, 0,   // 16
+		-0.5, 0.5,  0.5, 1, 0,  // 17
+		-0.5, 0.5, -0.5, 1, 1,  // 18
+		0.5, 0.5, -0.5, 0, 1,   // 19
+
+		// bottom
+		-0.5, -0.5, -0.5, 0, 0, // 20
+		0.5, -0.5, -0.5, 1, 0,  // 21
+		0.5, -0.5,  0.5, 1, 1,  // 22
+		-0.5, -0.5,  0.5, 0, 1, // 23
+	};
+
+	unsigned int indices[] = {
+		0,  1,  2,  0,  2,  3,   // front
+		4,  5,  6,  4,  6,  7,   // right
+		8,  9,  10, 8,  10, 11,  // back
+		12, 14, 13, 12, 15, 14,  // left
+		16, 18, 17, 16, 19, 18,  // upper
+		20, 22, 21, 20, 23, 22   // bottom
+	};
+
+	glGenVertexArrays(1, &VAO5);
+	glGenBuffers(1, &VBO5);
+	glGenBuffers(1, &EBO5);
+	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+	glBindVertexArray(VAO5);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO5);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO5);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	// define position pointer layout 0
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(0 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(0);
+
+	// define texcoord pointer layout 1
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
+
+	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+	glBindVertexArray(0);
+
+	// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+}
+void Application::BuildTreeLeaf() {
+	// load image into texture memory
+	// ------------------------------
+	// Load and create a texture 
+	glGenTextures(1, &texture6);
+	glBindTexture(GL_TEXTURE_2D, texture6);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	int width, height;
+	unsigned char* image = SOIL_load_image("Leaf.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 1);
+
+	// set up vertex data (and buffer(s)) and configure vertex attributes
+	// ------------------------------------------------------------------
+	float vertices[] = {
+		// format position, tex coords
+		// front
+		-0.5, -0.5, 0.5, 0, 0,  // 0
+		0.5, -0.5, 0.5, 1, 0,   // 1
+		0.5,  0.5, 0.5, 1, 1,   // 2
+		-0.5,  0.5, 0.5, 0, 1,  // 3
+
+		// right
+		0.5,  0.5,  0.5, 0, 0,  // 4
+		0.5,  0.5, -0.5, 1, 0,  // 5
+		0.5, -0.5, -0.5, 1, 1,  // 6
+		0.5, -0.5,  0.5, 0, 1,  // 7
+
+		// back
+		-0.5, -0.5, -0.5, 0, 0, // 8 
+		0.5,  -0.5, -0.5, 1, 0, // 9
+		0.5,   0.5, -0.5, 1, 1, // 10
+		-0.5,  0.5, -0.5, 0, 1, // 11
+
+		// left
+		-0.5, -0.5, -0.5, 0, 0, // 12
+		-0.5, -0.5,  0.5, 1, 0, // 13
+		-0.5,  0.5,  0.5, 1, 1, // 14
+		-0.5,  0.5, -0.5, 0, 1, // 15
+
+		// upper
+		0.5, 0.5,  0.5, 0, 0,   // 16
+		-0.5, 0.5,  0.5, 1, 0,  // 17
+		-0.5, 0.5, -0.5, 1, 1,  // 18
+		0.5, 0.5, -0.5, 0, 1,   // 19
+
+		// bottom
+		-0.5, -0.5, -0.5, 0, 0, // 20
+		0.5, -0.5, -0.5, 1, 0,  // 21
+		0.5, -0.5,  0.5, 1, 1,  // 22
+		-0.5, -0.5,  0.5, 0, 1, // 23
+	};
+
+	unsigned int indices[] = {
+		0,  1,  2,  0,  2,  3,   // front
+		4,  5,  6,  4,  6,  7,   // right
+		8,  9,  10, 8,  10, 11,  // back
+		12, 14, 13, 12, 15, 14,  // left
+		16, 18, 17, 16, 19, 18,  // upper
+		20, 22, 21, 20, 23, 22   // bottom
+	};
+
+	glGenVertexArrays(1, &VAO6);
+	glGenBuffers(1, &VBO6);
+	glGenBuffers(1, &EBO6);
+	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+	glBindVertexArray(VAO6);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO6);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO6);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	// define position pointer layout 0
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(0 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(0);
+
+	// define texcoord pointer layout 1
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
+
+	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+	glBindVertexArray(0);
+
+	// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+}
+
 void Application::DrawStreet()
 {
 	glUseProgram(shaderProgram);
@@ -743,7 +935,7 @@ void Application::DrawHouseRoof()
 
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, texture3);
-	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 3);
 
 	glBindVertexArray(VAO3);
 
@@ -857,6 +1049,74 @@ void Application::DrawColoredPlane()
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
+}
+
+void Application::DrawTree()
+{
+	glUseProgram(shaderProgram);
+
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
+
+	glBindVertexArray(VAO5);
+
+
+	//kiri
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(10, 0, -30));
+	model = glm::scale(model, glm::vec3(1, 5, 1));
+
+	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+
+	glBindVertexArray(0);
+}
+void Application::DrawTreeLeaf()
+{
+	glUseProgram(shaderProgram);
+
+	glActiveTexture(GL_TEXTURE6);
+	glBindTexture(GL_TEXTURE_2D, texture6);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 6);
+
+	glBindVertexArray(VAO6);
+
+	//kiri
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(9.5, 3, -30));
+	model = glm::scale(model, glm::vec3(2, 2, 2));
+
+	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//kanan
+	glm::mat4 model2;
+	model2 = glm::translate(model2, glm::vec3(10.5, 3, -30));
+	model2 = glm::scale(model2, glm::vec3(2, 2, 2));
+
+	glGetUniformLocation(this->shaderProgram, "model2");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//atas
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(10, 3.5, -30));
+	model3 = glm::scale(model3, glm::vec3(2, 2, 2));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
 	glBindVertexArray(0);
 }
 

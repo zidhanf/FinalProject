@@ -33,8 +33,8 @@ private:
 	void BuildPinggiranPool_1();
 	void BuildPinggiranPool_2();
 	void BuildPermukaanKolam();
-	//void BuildTree();
-	//void BuildTreeLeaf();
+	void BuildTree();
+	void BuildTreeLeaf();
 	void BuildColoredPlane();
 	void DrawStreet();
 	void DrawHouse();
@@ -42,8 +42,8 @@ private:
 	void DrawPoolSurface();
 	void DrawPinggiranPool_1();
 	void DrawPinggiranPool_2();
-	/*void DrawTree();
-	void DrawTreeLeaf();*/
+	void DrawTree();
+	void DrawTreeLeaf();
 	void DrawColoredPlane();
 	void InitCamera();
 	void MoveCamera(float speed);
