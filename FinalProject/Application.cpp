@@ -816,7 +816,6 @@ void Application::DrawTreeLeaf()
 
 	glBindVertexArray(VAO6);
 
-
 	//kiri
 	glm::mat4 model;
 	model = glm::translate(model, glm::vec3(9.5, 3, -30));
@@ -846,8 +845,6 @@ void Application::DrawTreeLeaf()
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-
 
 	glBindVertexArray(0);
 }
