@@ -29,6 +29,10 @@ private:
 	void BuildStreet();
 	void BuildHouse();
 	void BuildHouseRoof();
+	void BuildPoolSurface();
+	void BuildPinggiranPool_1();
+	void BuildPinggiranPool_2();
+	void BuildPermukaanKolam();
 	void BuildTree();
 	void BuildTreeLeaf();
 	void BuildDoor();
@@ -37,6 +41,9 @@ private:
 	void DrawStreet();
 	void DrawHouse();
 	void DrawHouseRoof();
+	void DrawPoolSurface();
+	void DrawPinggiranPool_1();
+	void DrawPinggiranPool_2();
 	void DrawTree();
 	void DrawTreeLeaf();
 	void DrawDoor();
