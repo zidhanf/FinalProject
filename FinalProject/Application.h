@@ -33,6 +33,7 @@ private:
 	void BuildPinggiranPool_1();
 	void BuildStandLampu();
 	void BuildLamp();
+	void BuildAtapLampu();
 	void BuildPinggiranPool_2();
 	void BuildPermukaanKolam();
 	void BuildTree();
@@ -47,6 +48,7 @@ private:
 	void DrawPinggiranPool_1();
 	void DrawStandLampu();
 	void DrawLamp();
+	void DrawAtap();
 	void DrawPinggiranPool_2();
 	void DrawTree();
 	void DrawTreeLeaf();
