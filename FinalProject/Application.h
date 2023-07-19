@@ -31,12 +31,16 @@ private:
 	void BuildHouseRoof();
 	void BuildTree();
 	void BuildTreeLeaf();
+	void BuildDoor();
+	void BuildWindow();
 	void BuildColoredPlane();
 	void DrawStreet();
 	void DrawHouse();
 	void DrawHouseRoof();
 	void DrawTree();
 	void DrawTreeLeaf();
+	void DrawDoor();
+	void DrawWindow();
 	void DrawColoredPlane();
 	void InitCamera();
 	void MoveCamera(float speed);
