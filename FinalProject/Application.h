@@ -16,7 +16,9 @@ public:
 private:
 	GLuint shaderProgram, VBO, VAO, EBO, texture, VBO2, VAO2, EBO2, texture2, VBO3, VAO3, EBO3, texture3, VBO4, BO4, VAO4, EBO4, texture4, VBO5,
 		BO5, VAO5, EBO5, texture5, VBO6, VAO6, EBO6, texture6, VBO7, VAO7, EBO7, texture7, VBO8, VAO8, EBO8, texture8, VBO9, VAO9, EBO9, texture9,
-		VBO10, EBO10, VAO10, texture10, VBO11, EBO11, VAO11, texture11, VBO12, EBO12, VAO12, texture12, VBO13, EBO13, VAO13, texture13, VBO14, EBO14, VAO14, texture14, VBO15, EBO15, VAO15, texture15;
+		VBO10, EBO10, VAO10, texture10, VBO11, EBO11, VAO11, texture11, VBO12, EBO12, VAO12, texture12, VBO13, EBO13, VAO13, texture13, VBO14, EBO14, 
+		VAO14, texture14, VBO15, EBO15, VAO15, texture15, VBO16, EBO16, VAO16, texture16, VBO17, EBO17, VAO17, texture17, VBO18, EBO18, VAO18, texture18, 
+		VBO19, EBO19, VAO19, texture19, VBO20, EBO20, VAO20, texture20;
 	float angle = 0;
 	float position1 = -1;
 	float position2 = -2;
