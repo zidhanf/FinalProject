@@ -1993,11 +1993,41 @@ void Application::DrawWall()
 
 		//kiri
 		glm::mat4 model2;
-		model2 = glm::translate(model2, glm::vec3(-8.2, 0, -14));
-		model2 = glm::scale(model2, glm::vec3(0.5, 3, 12.4));
+		model2 = glm::translate(model2, glm::vec3(-14.2, 0, -32));
+		model2 = glm::scale(model2, glm::vec3(0.5, 3, 36));
 
 		glGetUniformLocation(this->shaderProgram, "model2");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+		//kanan
+		glm::mat4 model3;
+		model3 = glm::translate(model3, glm::vec3(6, 0, -32));
+		model3 = glm::scale(model3, glm::vec3(0.5, 3, 36));
+
+		glGetUniformLocation(this->shaderProgram, "model3");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+		//depan Kanan
+		glm::mat4 model4;
+		model4 = glm::translate(model4, glm::vec3(4.6, 0, -14));
+		model4 = glm::scale(model4, glm::vec3(3.3, 3, 0.5));
+
+		glGetUniformLocation(this->shaderProgram, "model4");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+		//belakang
+			glm::mat4 model5;
+		model5 = glm::translate(model5, glm::vec3(-4.1, 0, -50));
+		model5 = glm::scale(model5, glm::vec3(20.7, 3, 0.5));
+
+		glGetUniformLocation(this->shaderProgram, "model5");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model5));
 
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
