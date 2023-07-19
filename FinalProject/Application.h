@@ -29,10 +29,14 @@ private:
 	void BuildStreet();
 	void BuildHouse();
 	void BuildHouseRoof();
+	//void BuildTree();
+	//void BuildTreeLeaf();
 	void BuildColoredPlane();
 	void DrawStreet();
 	void DrawHouse();
 	void DrawHouseRoof();
+	/*void DrawTree();
+	void DrawTreeLeaf();*/
 	void DrawColoredPlane();
 	void InitCamera();
 	void MoveCamera(float speed);

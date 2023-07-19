@@ -18,6 +18,8 @@ void Application::Init()
 	BuildColoredPlane();
 	BuildHouse();
 	BuildHouseRoof();
+	/*BuildTree();
+	BuildTreeLeaf();*/
 	InitCamera();
 }
 
@@ -65,6 +67,8 @@ void Application::Render()
 	DrawColoredPlane();
 	DrawHouse();
 	DrawHouseRoof();
+	/*DrawTree();
+	DrawTreeLeaf();*/
 
 	glDisable(GL_DEPTH_TEST);
 }
@@ -238,8 +242,8 @@ void Application::BuildHouse() {
 	// load image into texture memory
 	// ------------------------------
 	// Load and create a texture 
-	glGenTextures(1, &texture4);
-	glBindTexture(GL_TEXTURE_2D, texture4);
+	glGenTextures(1, &texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
@@ -298,16 +302,16 @@ void Application::BuildHouse() {
 		20, 22, 21, 20, 23, 22   // bottom
 	};
 
-	glGenVertexArrays(1, &VAO4);
-	glGenBuffers(1, &VBO4);
-	glGenBuffers(1, &EBO4);
+	glGenVertexArrays(1, &VAO2);
+	glGenBuffers(1, &VBO2);
+	glGenBuffers(1, &EBO2);
 	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-	glBindVertexArray(VAO4);
+	glBindVertexArray(VAO2);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO4);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO4);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO2);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// define position pointer layout 0
@@ -333,8 +337,8 @@ void Application::BuildHouseRoof() {
 	// load image into texture memory
 	// ------------------------------
 	// Load and create a texture 
-	glGenTextures(1, &texture5);
-	glBindTexture(GL_TEXTURE_2D, texture5);
+	glGenTextures(1, &texture3);
+	glBindTexture(GL_TEXTURE_2D, texture3);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
@@ -393,16 +397,16 @@ void Application::BuildHouseRoof() {
 		20, 22, 21, 20, 23, 22   // bottom
 	};
 
-	glGenVertexArrays(1, &VAO5);
-	glGenBuffers(1, &VBO5);
-	glGenBuffers(1, &EBO5);
+	glGenVertexArrays(1, &VAO3);
+	glGenBuffers(1, &VBO3);
+	glGenBuffers(1, &EBO3);
 	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-	glBindVertexArray(VAO5);
+	glBindVertexArray(VAO3);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO5);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO3);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO5);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO3);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// define position pointer layout 0
@@ -431,8 +435,8 @@ void Application::BuildHouseRoof() {
 void Application::BuildColoredPlane()
 {
 	// Load and create a texture 
-	glGenTextures(1, &texture2);
-	glBindTexture(GL_TEXTURE_2D, texture2);
+	glGenTextures(1, &texture4);
+	glBindTexture(GL_TEXTURE_2D, texture4);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -459,16 +463,16 @@ void Application::BuildColoredPlane()
 
 	GLuint indices[] = { 0,  2,  1,  0,  3,  2 };
 
-	glGenVertexArrays(1, &VAO2);
-	glGenBuffers(1, &VBO2);
-	glGenBuffers(1, &EBO2);
+	glGenVertexArrays(1, &VAO4);
+	glGenBuffers(1, &VBO4);
+	glGenBuffers(1, &EBO4);
 
-	glBindVertexArray(VAO2);
+	glBindVertexArray(VAO4);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO4);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO2);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO4);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Position attribute
@@ -509,11 +513,11 @@ void Application::DrawHouse()
 {
 	glUseProgram(shaderProgram);
 
-	glActiveTexture(GL_TEXTURE4);
-	glBindTexture(GL_TEXTURE_2D, texture4);
-	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 4);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 2);
 
-	glBindVertexArray(VAO4);
+	glBindVertexArray(VAO2);
 
 
 	//kiri
@@ -544,11 +548,11 @@ void Application::DrawHouseRoof()
 {
 	glUseProgram(shaderProgram);
 
-	glActiveTexture(GL_TEXTURE5);
-	glBindTexture(GL_TEXTURE_2D, texture5);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, texture3);
 	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
 
-	glBindVertexArray(VAO5);
+	glBindVertexArray(VAO3);
 
 
 	//kiri
@@ -571,11 +575,11 @@ void Application::DrawColoredPlane()
 {
 	glUseProgram(shaderProgram);
 
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture2);
-	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 1);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, texture4);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 4);
 
-	glBindVertexArray(VAO2); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+	glBindVertexArray(VAO4); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
 	glm::mat4 model;
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
