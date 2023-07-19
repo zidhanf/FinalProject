@@ -30,6 +30,7 @@ void Application::Init()
 	BuildLamp();
 	BuildAtapLampu();
 	BuildWall();
+	BuildFlower();
 	InitCamera();
 	
 }
@@ -90,6 +91,7 @@ void Application::Render()
 	DrawChair();
 	DrawChairBottom();
 	DrawWall();
+	DrawFlower();
 
 	glDisable(GL_DEPTH_TEST);
 }
@@ -1560,6 +1562,101 @@ void Application::BuildWall() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 }
+void Application::BuildFlower() {
+	// load image into texture memory
+	// ------------------------------
+	// Load and create a texture 
+	glGenTextures(1, &texture17);
+	glBindTexture(GL_TEXTURE_2D, texture17);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	int width, height;
+	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 1);
+
+	// set up vertex data (and buffer(s)) and configure vertex attributes
+	// ------------------------------------------------------------------
+	float vertices[] = {
+		// format position, tex coords
+		// front
+		-0.5, -0.5, 0.5, 0, 0,  // 0
+		0.5, -0.5, 0.5, 1, 0,   // 1
+		0.5,  0.5, 0.5, 1, 1,   // 2
+		-0.5,  0.5, 0.5, 0, 1,  // 3
+
+		// right
+		0.5,  0.5,  0.5, 0, 0,  // 4
+		0.5,  0.5, -0.5, 1, 0,  // 5
+		0.5, -0.5, -0.5, 1, 1,  // 6
+		0.5, -0.5,  0.5, 0, 1,  // 7
+
+		// back
+		-0.5, -0.5, -0.5, 0, 0, // 8 
+		0.5,  -0.5, -0.5, 1, 0, // 9
+		0.5,   0.5, -0.5, 1, 1, // 10
+		-0.5,  0.5, -0.5, 0, 1, // 11
+
+		// left
+		-0.5, -0.5, -0.5, 0, 0, // 12
+		-0.5, -0.5,  0.5, 1, 0, // 13
+		-0.5,  0.5,  0.5, 1, 1, // 14
+		-0.5,  0.5, -0.5, 0, 1, // 15
+
+		// upper
+		0.5, 0.5,  0.5, 0, 0,   // 16
+		-0.5, 0.5,  0.5, 1, 0,  // 17
+		-0.5, 0.5, -0.5, 1, 1,  // 18
+		0.5, 0.5, -0.5, 0, 1,   // 19
+
+		// bottom
+		-0.5, -0.5, -0.5, 0, 0, // 20
+		0.5, -0.5, -0.5, 1, 0,  // 21
+		0.5, -0.5,  0.5, 1, 1,  // 22
+		-0.5, -0.5,  0.5, 0, 1, // 23
+	};
+
+	unsigned int indices[] = {
+		0,  1,  2,  0,  2,  3,   // front
+		4,  5,  6,  4,  6,  7,   // right
+		8,  9,  10, 8,  10, 11,  // back
+		12, 14, 13, 12, 15, 14,  // left
+		16, 18, 17, 16, 19, 18,  // upper
+		20, 22, 21, 20, 23, 22   // bottom
+	};
+
+	glGenVertexArrays(1, &VAO17);
+	glGenBuffers(1, &VBO17);
+	glGenBuffers(1, &EBO17);
+	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+	glBindVertexArray(VAO17);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO17);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO17);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	// define position pointer layout 0
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(0 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(0);
+
+	// define texcoord pointer layout 1
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
+
+	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+	glBindVertexArray(0);
+
+	// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+}
 
 void Application::DrawStreet()
 {
@@ -1796,70 +1893,72 @@ void Application::DrawColoredPlane()
 
 void Application::DrawTree()
 {
-	glUseProgram(shaderProgram);
+	for (int i = 0; i < 4; i++) {
+		glUseProgram(shaderProgram);
 
-	glActiveTexture(GL_TEXTURE5);
-	glBindTexture(GL_TEXTURE_2D, texture5);
-	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
+		glActiveTexture(GL_TEXTURE5);
+		glBindTexture(GL_TEXTURE_2D, texture5);
+		glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
 
-	glBindVertexArray(VAO5);
+		glBindVertexArray(VAO5);
 
+		glm::mat4 model;
+		model = glm::translate(model, glm::vec3(10, 0, ( -15 -8*i)));
+		model = glm::scale(model, glm::vec3(1, 5, 1));
 
-	//kiri
-	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(10, 0, -30));
-	model = glm::scale(model, glm::vec3(1, 5, 1));
+		GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 
-	glBindVertexArray(0);
+
+		glBindVertexArray(0);
+	}
 }
 void Application::DrawTreeLeaf()
 {
-	glUseProgram(shaderProgram);
+	for (int i = 0; i < 4; i++) {
+		glUseProgram(shaderProgram);
 
-	glActiveTexture(GL_TEXTURE6);
-	glBindTexture(GL_TEXTURE_2D, texture6);
-	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 6);
+		glActiveTexture(GL_TEXTURE6);
+		glBindTexture(GL_TEXTURE_2D, texture6);
+		glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 6);
 
-	glBindVertexArray(VAO6);
+		glBindVertexArray(VAO6);
 
-	//kiri
-	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(9.5, 3, -30));
-	model = glm::scale(model, glm::vec3(2, 2, 2));
+		//kiri
+		glm::mat4 model;
+		model = glm::translate(model, glm::vec3(9.5, 3, (-15 - 8 * i)));
+		model = glm::scale(model, glm::vec3(2, 2, 2));
 
-	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-	//kanan
-	glm::mat4 model2;
-	model2 = glm::translate(model2, glm::vec3(10.5, 3, -30));
-	model2 = glm::scale(model2, glm::vec3(2, 2, 2));
+		//kanan
+		glm::mat4 model2;
+		model2 = glm::translate(model2, glm::vec3(10.5, 3, (-15 - 8 * i)));
+		model2 = glm::scale(model2, glm::vec3(2, 2, 2));
 
-	glGetUniformLocation(this->shaderProgram, "model2");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+		glGetUniformLocation(this->shaderProgram, "model2");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
 
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-	//atas
-	glm::mat4 model3;
-	model3 = glm::translate(model3, glm::vec3(10, 3.5, -30));
-	model3 = glm::scale(model3, glm::vec3(2, 2, 2));
+		//atas
+		glm::mat4 model3;
+		model3 = glm::translate(model3, glm::vec3(10, 3.5, (-15 - 8 * i)));
+		model3 = glm::scale(model3, glm::vec3(2, 2, 2));
 
-	glGetUniformLocation(this->shaderProgram, "model3");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+		glGetUniformLocation(this->shaderProgram, "model3");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
 
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-	glBindVertexArray(0);
+		glBindVertexArray(0);
+	}
 }
 
 void Application::DrawDoor()
@@ -2033,6 +2132,69 @@ void Application::DrawWall()
 
 		glBindVertexArray(0);
 	
+}
+void Application::DrawFlower()
+{
+	glUseProgram(shaderProgram);
+
+	glActiveTexture(GL_TEXTURE17);
+	glBindTexture(GL_TEXTURE_2D, texture17);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 17);
+
+	glBindVertexArray(VAO17);
+
+	//depan kiri
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(-8.2, 0, -13.5));
+	model = glm::scale(model, glm::vec3(12.4,1, 1));
+
+	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//kiri
+	glm::mat4 model2;
+	model2 = glm::translate(model2, glm::vec3(-14.7, 0, -31.5));
+	model2 = glm::scale(model2, glm::vec3(1, 1, 37));
+
+	glGetUniformLocation(this->shaderProgram, "model2");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//kanan
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(6.5, 0, -31.5));
+	model3 = glm::scale(model3, glm::vec3(1, 1, 37));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//depan Kanan
+	glm::mat4 model4;
+	model4 = glm::translate(model4, glm::vec3(4.6, 0, -13.5));
+	model4 = glm::scale(model4, glm::vec3(3.3, 1, 1));
+
+	glGetUniformLocation(this->shaderProgram, "model4");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	//belakang
+	glm::mat4 model5;
+	model5 = glm::translate(model5, glm::vec3(-4.1, 0, -50));
+	model5 = glm::scale(model5, glm::vec3(20.7, 3, 0.5));
+
+	glGetUniformLocation(this->shaderProgram, "model5");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model5));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+
 }
 
 
