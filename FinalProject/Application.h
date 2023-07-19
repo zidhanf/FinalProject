@@ -39,6 +39,7 @@ private:
 	void BuildPinggiranPool_2();
 	void BuildPermukaanKolam();
 	void BuildTree();
+	void BuildFlower();
 	void BuildTreeLeaf();
 	void BuildChair();
 	void BuildDoor();
@@ -51,6 +52,7 @@ private:
 	void DrawChair();
 	void DrawChairBottom();
 	void DrawHouse();
+	void DrawFlower();
 	void DrawHouseRoof();
 	void DrawPoolSurface();
 	void DrawPinggiranPool_1();
