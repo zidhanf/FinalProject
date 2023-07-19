@@ -462,7 +462,7 @@ void Application::BuildPoolSurface()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image("wall.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("water.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -558,7 +558,7 @@ void Application::BuildPinggiranPool_1()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image("roof.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("pool_ceramic.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -654,7 +654,7 @@ void Application::BuildStandLampu()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image("wood1.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("benc_wood.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -750,7 +750,7 @@ void Application::BuildLamp()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image("roof.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("light.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -846,7 +846,7 @@ void Application::BuildLampRoof()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image("Road.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("steal.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1186,7 +1186,7 @@ void Application::BuildDoor() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("door_1.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1282,7 +1282,7 @@ void Application::BuildWindow() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("window.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1378,7 +1378,7 @@ void Application::BuildChair() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("benc_wood.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1473,7 +1473,7 @@ void Application::BuildChairBottom() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("rock.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1568,7 +1568,7 @@ void Application::BuildWall() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("preview.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1663,7 +1663,7 @@ void Application::BuildFlower() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	int width, height;
-	unsigned char* image = SOIL_load_image(".jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("wall.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 1);
@@ -1771,6 +1771,7 @@ void Application::DrawStreet()
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+
 	glBindVertexArray(0);
 }
 
@@ -1923,11 +1924,29 @@ void Application::DrawStandLampu()
 	glBindVertexArray(VAO12);
 
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(-3, 0.2, 0));
+	model = glm::translate(model, glm::vec3(-3, 0.2, -11));
 	model = glm::scale(model, glm::vec3(0.25, 3, 0.25));
 
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model2;
+	model2 = glm::translate(model2, glm::vec3(4, 0.2, -11));
+	model2 = glm::scale(model2, glm::vec3(0.25, 3, 0.25));
+
+	glGetUniformLocation(this->shaderProgram, "model2");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(-11, 0.2, -29));
+	model3 = glm::scale(model3, glm::vec3(0.25, 3, 0.25));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
@@ -1946,11 +1965,38 @@ void Application::DrawLamp()
 	glBindVertexArray(VAO14);
 
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(-3, 2, 0));
+	model = glm::translate(model, glm::vec3(-3, 2, -11));
 	model = glm::scale(model, glm::vec3(0.5, 1, 0.5));
 
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model2;
+	model2 = glm::translate(model2, glm::vec3(4, 2, -11));
+	model2 = glm::scale(model2, glm::vec3(0.5, 1, 0.5));
+
+	glGetUniformLocation(this->shaderProgram, "model2");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(-11, 2, -29));
+	model3 = glm::scale(model3, glm::vec3(0.5, 1, 0.5));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model4;
+	model4 = glm::translate(model4, glm::vec3(0.5, 4.2, -22.75));
+	model4 = glm::scale(model4, glm::vec3(1, 0.3, 1));
+
+	glGetUniformLocation(this->shaderProgram, "model4");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
@@ -1969,7 +2015,7 @@ void Application::DrawLampRoof()
 	glBindVertexArray(VAO16);
 
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(-3, 2.5, 0));
+	model = glm::translate(model, glm::vec3(-3, 2.5, -11));
 	model = glm::scale(model, glm::vec3(1, 0.07, 1));
 
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
@@ -1978,13 +2024,53 @@ void Application::DrawLampRoof()
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 	glm::mat4 model2;
-	model2 = glm::translate(model2, glm::vec3(-3, 2.55, 0));
+	model2 = glm::translate(model2, glm::vec3(-3, 2.55, -11));
 	model2 = glm::scale(model2, glm::vec3(0.8, 0.07, 0.8));
 
 	glGetUniformLocation(this->shaderProgram, "model2");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(4, 2.5, -11));
+	model3 = glm::scale(model3, glm::vec3(1, 0.07, 1));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model4;
+	model4 = glm::translate(model4, glm::vec3(4, 2.55, -11));
+	model4 = glm::scale(model4, glm::vec3(0.8, 0.07, 0.8));
+
+	glGetUniformLocation(this->shaderProgram, "model4");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model5;
+	model5 = glm::translate(model5, glm::vec3(-11, 2.5, -29));
+	model5 = glm::scale(model5, glm::vec3(1, 0.07, 1));
+
+	glGetUniformLocation(this->shaderProgram, "model5");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model5));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model6;
+	model6 = glm::translate(model6, glm::vec3(-11, 2.55, -29));
+	model6 = glm::scale(model6, glm::vec3(0.8, 0.07, 0.8));
+
+	glGetUniformLocation(this->shaderProgram, "model6");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model6));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	
+
+
 
 
 	glBindVertexArray(0);
@@ -2012,53 +2098,75 @@ void Application::DrawColoredPlane()
 
 void Application::DrawTree()
 {
+	glUseProgram(shaderProgram);
+
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
+
+	glBindVertexArray(VAO5);
+
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(10, 0, -15));
+	model = glm::scale(model, glm::vec3(0, 0, 0));
+
+	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
 	for (int i = 0; i < 4; i++) {
-		glUseProgram(shaderProgram);
+		
+		glm::mat4 model2;
+		model2 = glm::translate(model2, glm::vec3(10, 0, ( -15 -8*i)));
+		model2 = glm::scale(model2, glm::vec3(1, 5, 1));
 
-		glActiveTexture(GL_TEXTURE5);
-		glBindTexture(GL_TEXTURE_2D, texture5);
-		glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 5);
-
-		glBindVertexArray(VAO5);
-
-		glm::mat4 model;
-		model = glm::translate(model, glm::vec3(10, 0, ( -15 -8*i)));
-		model = glm::scale(model, glm::vec3(1, 5, 1));
-
-		GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glGetUniformLocation(this->shaderProgram, "model2");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
 
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-
-
-		glBindVertexArray(0);
 	}
+	
+	for (int i = 0; i < 4; i++) {
+
+		glm::mat4 model3;
+		model3 = glm::translate(model3, glm::vec3(-18, 0, (-15 - 8 * i)));
+		model3 = glm::scale(model3, glm::vec3(1, 5, 1));
+
+		glGetUniformLocation(this->shaderProgram, "model3");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		
+	}
+	glBindVertexArray(0);
+	
 }
 void Application::DrawTreeLeaf()
 {
+	glUseProgram(shaderProgram);
+
+	glActiveTexture(GL_TEXTURE6);
+	glBindTexture(GL_TEXTURE_2D, texture6);
+	glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 6);
+
+	glBindVertexArray(VAO6);
+
+	//kiri
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(9.5, 3, -15 ));
+	model = glm::scale(model, glm::vec3(2, 2, 2));
+
+	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
 	for (int i = 0; i < 4; i++) {
-		glUseProgram(shaderProgram);
-
-		glActiveTexture(GL_TEXTURE6);
-		glBindTexture(GL_TEXTURE_2D, texture6);
-		glUniform1i(glGetUniformLocation(this->shaderProgram, "ourTexture"), 6);
-
-		glBindVertexArray(VAO6);
-
 		//kiri
-		glm::mat4 model;
-		model = glm::translate(model, glm::vec3(9.5, 3, (-15 - 8 * i)));
-		model = glm::scale(model, glm::vec3(2, 2, 2));
-
-		GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-		//kanan
 		glm::mat4 model2;
-		model2 = glm::translate(model2, glm::vec3(10.5, 3, (-15 - 8 * i)));
+		model2 = glm::translate(model2, glm::vec3(9.5, 3, (-15 - 8 * i)));
 		model2 = glm::scale(model2, glm::vec3(2, 2, 2));
 
 		glGetUniformLocation(this->shaderProgram, "model2");
@@ -2066,9 +2174,9 @@ void Application::DrawTreeLeaf()
 
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-		//atas
+		//kanan
 		glm::mat4 model3;
-		model3 = glm::translate(model3, glm::vec3(10, 3.5, (-15 - 8 * i)));
+		model3 = glm::translate(model3, glm::vec3(10.5, 3, (-15 - 8 * i)));
 		model3 = glm::scale(model3, glm::vec3(2, 2, 2));
 
 		glGetUniformLocation(this->shaderProgram, "model3");
@@ -2076,8 +2184,51 @@ void Application::DrawTreeLeaf()
 
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-		glBindVertexArray(0);
+		//atas
+		glm::mat4 model4;
+		model4 = glm::translate(model4, glm::vec3(10, 3.5, (-15 - 8 * i)));
+		model4 = glm::scale(model4, glm::vec3(2, 2, 2));
+
+		glGetUniformLocation(this->shaderProgram, "model4");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	}
+	for (int i = 0; i < 4; i++) {
+		//kiri
+		glm::mat4 model2;
+		model2 = glm::translate(model2, glm::vec3(-17.5, 3, (-15 - 8 * i)));
+		model2 = glm::scale(model2, glm::vec3(2, 2, 2));
+
+		glGetUniformLocation(this->shaderProgram, "model2");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+		//kanan
+		glm::mat4 model3;
+		model3 = glm::translate(model3, glm::vec3(-18.5, 3, (-15 - 8 * i)));
+		model3 = glm::scale(model3, glm::vec3(2, 2, 2));
+
+		glGetUniformLocation(this->shaderProgram, "model3");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+		//atas
+		glm::mat4 model4;
+		model4 = glm::translate(model4, glm::vec3(-18, 3.5, (-15 - 8 * i)));
+		model4 = glm::scale(model4, glm::vec3(2, 2, 2));
+
+		glGetUniformLocation(this->shaderProgram, "model4");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model4));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	}
+
+	
+
+	glBindVertexArray(0);
 }
 
 void Application::DrawDoor()
@@ -2094,10 +2245,19 @@ void Application::DrawDoor()
 	//kiri
 	glm::mat4 model;
 	model = glm::translate(model, glm::vec3(0.5, 1, -25.1));
-	model = glm::scale(model, glm::vec3(2, 4, 0.4));
+	model = glm::scale(model, glm::vec3(2, 5, 0.4));
 
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	glm::mat4 model2;
+	model2 = glm::translate(model2, glm::vec3(-2.1, 1, -36.3));
+	model2 = glm::scale(model2, glm::vec3(0.4, 5, 2));
+
+	glGetUniformLocation(this->shaderProgram, "model2");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
@@ -2122,6 +2282,26 @@ void Application::DrawWindow()
 
 	GLint modelLoc = glGetUniformLocation(this->shaderProgram, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	for (int i = 0; i < 2; i++) {
+		glm::mat4 model2;
+		model2 = glm::translate(model2, glm::vec3(-8, 2, (-26.5-i*6)));
+		model2 = glm::scale(model2, glm::vec3(0.4, 2, (4+i*1)));
+
+		glGetUniformLocation(this->shaderProgram, "model2");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
+
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	}
+
+	glm::mat4 model3;
+	model3 = glm::translate(model3, glm::vec3(-5, 2, -37.5));
+	model3 = glm::scale(model3, glm::vec3(4, 2, 0.4));
+
+	glGetUniformLocation(this->shaderProgram, "model3");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model3));
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
